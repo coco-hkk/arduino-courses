@@ -15,7 +15,6 @@ dht11 DHT11;
 void setup()
 {
   Serial.begin(115200);
-  pinMode(DHT11PIN, OUTPUT);
 }
 
 void loop()

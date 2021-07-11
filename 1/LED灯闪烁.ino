@@ -3,7 +3,7 @@
   
   LED灯闪烁实验。
   
-  1 tab = 4 space
+  1 tab = 2 space
 */
 
 int ledPin = 10;              //定义数字10 接口

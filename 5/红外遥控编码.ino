@@ -8,6 +8,8 @@
 
 #include <IRremote.h>
 
+// 本代码适用于 IRremote 3.1.1 之前的
+
 //An IR detector/demodulator is connected to GPIO pin 11
 uint16_t RECV_PIN = 11;
 
