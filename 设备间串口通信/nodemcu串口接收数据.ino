@@ -14,7 +14,7 @@
 #define D6  12
 #define D5  14
 
-SoftwareSerial nodemcuSerial(D6,D5);
+SoftwareSerial nodemcuSerial(D5,D6);    //第一个参数D5是接收端口，第二个参数D6是发送端口
  
 void setup()
 {

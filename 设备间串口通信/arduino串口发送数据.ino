@@ -16,7 +16,7 @@
 #include <SoftwareSerial.h>
  
 /* arduino serial settings, port 2 for RX, port 3 for TX*/
-SoftwareSerial arduinoSerial(2,3);
+SoftwareSerial arduinoSerial(2,3);      // 第一个参数2是接收端口，第二个参数3是发送端口
 
 void setup() 
 {

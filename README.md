@@ -19,7 +19,10 @@
 
 - WIN10 64 位 家庭版
 - Arduino IDE arduino-1.8.15（从[这里](https://www.arduino.cc/en/software) 获取）
-- Arduino UNO
+- 电路设计工具 [fritzing](https://fritzing.org/download) 或 Github [fritzing](https://github.com/fritzing/fritzing-app/releases) 选择合适自己的版本。
+- Arduino UNO 板子
+- ESP8266MOD 板子
+- ESP8266-12E(NodeMCU 1.0) 板子
 - DS1302 [库文件](http://osoyoo.com/2016/07/26/ds1302_clock_module/)
 
 # 实验强调
@@ -35,6 +38,7 @@
 2. 二进制和十六进制之间的转换。
 3. 位操作。
 4. 结构体。
+5. 函数。
 
 # 实验内容
 
@@ -59,6 +63,10 @@
 19. NodeMCU/ESP8266 本地数据发布。MCU 创建服务器并给客户端发送传感器数据。
 20. NodeMCU/ESP8266 本地传感器控制。利用客户端控制 MCU 外围设备、传感器。
 21. 通过 MQTT 客户端完成与 IOT 的互联。
+22. MQ-9 可燃气体传感器。
+23. PM2.5 传感器。
+24. YL-69 土壤湿度传感器。
+25. 设备间串口通信。
 
 # 实验问题
 
@@ -107,3 +115,8 @@
     1. 可能是数据线问题，换一下试试。
     2. 可能是端口问题，换一下端口。
     3. 重新安装驱动。
+
+# 实训项目
+
+1. 使用函数封装不同硬件模块代码。
+2. 设备间通过串口通信，合理设计通信的数据结构。
