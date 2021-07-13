@@ -44,8 +44,8 @@ void loop() {
   
   Serial.println();
   Serial.print("a ");
-  Serial.println(root["a"]);
+  Serial.println((int)root["a"]);   //类型要和在 arduino 文件中定义的一致。所以这里强制转换类型。
   Serial.print("b ");
-  Serial.println(root["b"]);
+  Serial.println((int)root["b"]);
   Serial.println("end.");
 }
