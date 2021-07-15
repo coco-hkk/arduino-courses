@@ -11,10 +11,11 @@
     1. 文件描述。如本注释快内容。
     2. 头文件引用。如，#include <Arduino.h>
     3. 宏定义。如，#define LED_PIN (0)
-    4. 全局变量定义。如，int humidity_value。
-    5. 函数定义。如，void func_module() {}。
-    6. setup()
-    7. loop()
+    4. 结构体定义。
+    5. 全局变量定义。如，int humidity_value。
+    6. 函数定义。如，void func_module() {}。
+    7. setup()
+    8. loop()
 
     注：本文件仅仅是模板。
 
@@ -47,7 +48,12 @@
 /*该结构体是两块设备间通过串口通信时的数据模板*/
 typedef struct {
     int id;             //用于标识消息是由哪个模块传递
-    int data;           //传递内容，可以是任何 Arduino 支持的类型，这里是 int。
+    union {             //传递内容，可以是任何 Arduino 支持的类型，这里是 int。
+        int id0_data;
+        int id1_data;
+        char id2_data;
+        float id3_data;
+    } data;
 } message;
 
 /******************************* global variable *****************************/
@@ -102,11 +108,11 @@ void dispatch() {
   JsonObject root = doc.as<JsonObject>(); // get the root object
 
   serial_msg.id = (int)root["id"];
-  serial_msg.data = (int)root["data"];
 
   switch(serial_msg.id) {
     case 0:
       Serial.println("消息来自 ID 为 0 的模块，这里处理模块 0 相关内容。");
+      serial_msg.id0_data = (int)root["data"];
       module0_process();
       break;
     case 1:
