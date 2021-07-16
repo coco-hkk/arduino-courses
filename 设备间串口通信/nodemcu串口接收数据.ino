@@ -56,6 +56,12 @@ void loop() {
 
   Serial.println("JSON received and parsed。");
 
+  /*
+   *  从串口获取的数据，内容为JSON格式。解析时要保证和发送端数据类型一致。
+   *  JSON 格式。元素为键值对。格式-> 键:值 => key: value
+   *  {"name": "hkk", "time": 2, "value": 1.5}
+   */
+   
   Serial.println();
   Serial.print("name: ");
   Serial.println(sensordata_json.name);
