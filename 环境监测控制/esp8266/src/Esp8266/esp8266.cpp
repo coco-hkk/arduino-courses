@@ -19,6 +19,9 @@ void esp8266_serial_init() {
   esp8266Serial.begin(9600);
 }
 
+/*
+ *  @func : 重启 arduino。
+ */
 void esp8266_reset_arduino() {
   const size_t capacity = 1024;
   StaticJsonDocument<capacity> doc;
@@ -26,12 +29,14 @@ void esp8266_reset_arduino() {
   doc["src"] = ESP8266_DEV;
   doc["dst"] = ARDUINO_DEV;
   doc["id"] = ESP8266_RESET_UNO_MSG;
-  doc["uno_reset"] = 1;
+  doc["uno_reset"] = true;
   serializeJson(doc, esp8266Serial);
 }
 
-void read_serial_data(mcu_msg& data)
+void read_serial_data()
 {
+  mcu_msg data;
+
   const size_t capacity = 1024;
   StaticJsonDocument<capacity> doc;
 
@@ -41,6 +46,8 @@ void read_serial_data(mcu_msg& data)
     Serial.println(error.f_str());
     return;
   }
+  
+  memset(&data, 0x00, sizeof(mcu_msg));
 
   data.src                           = doc["src"];
   data.dst                           = doc["dst"];
@@ -60,6 +67,16 @@ void read_serial_data(mcu_msg& data)
       data.msg.uno_sensor_msg.mq9_alarm         = doc["mq9_alarm"];
       data.msg.uno_sensor_msg.yl69_analog_value = doc["yl69_analog_value"];
       data.msg.uno_sensor_msg.photoresistor     = doc["photoresistor"];
+      /*
+      Serial.println(data.msg.uno_sensor_msg.temperature);
+      Serial.println(data.msg.uno_sensor_msg.humidity);
+      Serial.println(data.msg.uno_sensor_msg.obstacle_distance);
+      Serial.println(data.msg.uno_sensor_msg.pm25_dust_denisty);
+      Serial.println(data.msg.uno_sensor_msg.mq9_ratio);
+      Serial.println(data.msg.uno_sensor_msg.mq9_alarm);
+      Serial.println(data.msg.uno_sensor_msg.yl69_analog_value);
+      Serial.println(data.msg.uno_sensor_msg.photoresistor);
+      */
       get_sensor_data_from_arduino_uno(data);
       break;
   }

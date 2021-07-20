@@ -63,6 +63,8 @@ void setup() {
 
 void loop() {
   mcu_msg uno_msg;
+  
+  read_serial_data();
 
   dht11_task(DHT11_PIN);
   ultrasonicwave_task();
@@ -71,7 +73,7 @@ void loop() {
 
   sensor_data_collection(uno_msg);
   arduino_send_sensor_data(uno_msg);
-
+  
   Serial.println();
-  delay(5000);
+  delay(1000);
 }

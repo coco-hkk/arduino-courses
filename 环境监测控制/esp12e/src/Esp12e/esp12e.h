@@ -1,6 +1,6 @@
 /*
  *
- *  esp8266 所用到的管脚宏定义
+ *  esp12e 所用到的管脚宏定义
  *
  *  2021/07/19 added by 郝宽宽
  *
@@ -25,4 +25,4 @@ void esp12e_serial_init();
  *  @func : esp8266 分发处理来自其他设备的消息
  *  @para1: 存储消息的变量
  */
-void read_serial_data(mcu_msg& data);
+void read_serial_data();

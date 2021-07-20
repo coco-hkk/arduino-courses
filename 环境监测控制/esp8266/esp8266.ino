@@ -10,6 +10,7 @@
 #include "src/esp8266/esp8266.h"
 #include "src/server/server.h"
 #include "src/irremote/irremote.h"
+#include "src/servo/servo.h"
 
 void setup()
 {
@@ -24,13 +25,13 @@ void setup()
 
   IRremote_init();
 
+  servo_init();
+
   server_config();
 }
 
 void loop() {
-  mcu_msg data;
-  
-  read_serial_data(data);
+  read_serial_data();
 
   IRremote_task();
 

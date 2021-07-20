@@ -1,6 +1,6 @@
 /*
  *
- *  esp8266 串口相关。
+ *  esp12e 串口相关。
  *
  *  2021/07/19 added by 郝宽宽
  *
@@ -16,8 +16,10 @@ void esp12e_serial_init() {
   esp12eSerial.begin(9600);
 }
 
-void read_serial_data(mcu_msg& data)
+void read_serial_data()
 {
+  mcu_msg data;
+  
   const size_t capacity = 1024;
   StaticJsonDocument<capacity> doc;
 
@@ -28,10 +30,12 @@ void read_serial_data(mcu_msg& data)
     return;
   }
 
+  memset(&data, 0x00, sizeof(mcu_msg));
+  
   data.src                           = doc["src"];
   data.dst                           = doc["dst"];
 
-  if (ESP8266_DEV != data.dst && ANY_DEV != data.dst)
+  if (ESP12E_DEV != data.dst && ANY_DEV != data.dst)
       return;
 
   data.id                            = doc["id"];

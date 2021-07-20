@@ -14,9 +14,6 @@
 #include "../common/gpio.h"
 #include "../common/soft_serial.h"
 
-#define SERIAL_RX (D10)   //软串口通信管脚
-#define SERIAL_TX (D11)
-
 #define DHT11_PIN (D3)  //温湿度传感器管脚
 
 #define PHOTORESISTOR_PIN (A0) //光敏传感器管脚
@@ -33,6 +30,11 @@
 #define PM25_LEDPOWER_PIN (D8)    //PM2.5传感器
 #define PM25_MEASURE_PIN  (A3)
 
+#define SERIAL_RX (D10)   //软串口通信管脚
+#define SERIAL_TX (D11)
+
+#define ARDUINO_RESET   (D12)   //重启 Arduino Uno
+
 /*
  *  @func : 初始化 arduino 串口
  */
@@ -48,4 +50,4 @@ void arduino_send_sensor_data(const mcu_msg& data);
  *  @func : arduino 处理接收到的数据
  *  @para1: 接收到的数据
  */
-void read_serial_data(mcu_msg& data);
+void read_serial_data();

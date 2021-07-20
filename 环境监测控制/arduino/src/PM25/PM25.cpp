@@ -52,6 +52,6 @@ void pm25_task(int measure_pin)
 }
 
 float get_pm25_dust_density() {
-  return dustDensity;
+  return dustDensity * 1000;
 }
 

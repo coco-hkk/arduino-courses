@@ -16,24 +16,13 @@ void arduino_serial_init() {
   arduinoSerial.begin(9600);
 }
 
-void esp8266_reset_arduino() {
-  const size_t capacity = 1024;
-  StaticJsonDocument<capacity> doc;
-
-  doc["src"] = ESP8266_DEV;
-  doc["dst"] = ARDUINO_DEV;
-  doc["id"] = ESP8266_RESET_UNO_MSG;
-  doc["uno_reset"] = 1;
-  serializeJson(doc, arduinoSerial);
-}
-
 void arduino_send_sensor_data(const mcu_msg& data)
 {
   const size_t capacity = 1024;
   StaticJsonDocument<capacity> doc;
 
   doc["src"] = ARDUINO_DEV;
-  doc["dst"] = ESP8266_DEV;
+  doc["dst"] = ANY_DEV;
   doc["id"] = ARDUINO_SENSOR_MSG;
   doc["temperature"] = data.msg.uno_sensor_msg.temperature;
   doc["humidity"] = data.msg.uno_sensor_msg.humidity;
@@ -58,8 +47,10 @@ void arduino_send_sensor_data(const mcu_msg& data)
   serializeJson(doc, arduinoSerial);
 }
 
-void read_serial_data(mcu_msg& data)
+void read_serial_data()
 {
+  mcu_msg data;
+  
   const size_t capacity = 1024;
   StaticJsonDocument<capacity> doc;
 
@@ -69,6 +60,8 @@ void read_serial_data(mcu_msg& data)
     Serial.println(error.f_str());
     return;
   }
+  
+  memset(&data, 0x00, sizeof(mcu_msg));
 
   data.src                           = doc["src"];
   data.dst                           = doc["dst"];
@@ -80,6 +73,12 @@ void read_serial_data(mcu_msg& data)
 
   switch(data.id) {
     case ESP8266_RESET_UNO_MSG:
+        /*将12脚连接一个1K电阻，然后用电阻另一端连接RESET脚。注意不是12脚直接连接RESET！！*/
+        Serial.println("即将重启 Arduino 设备……");
+        Serial.println();
+        delay(2000);
+        pinMode(ARDUINO_RESET, OUTPUT);
+        digitalWrite(ARDUINO_RESET, LOW);
       break;
   }
 }

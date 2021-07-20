@@ -26,6 +26,8 @@
 
 #define IR_REMOTE   (D7)    //红外遥控
 
+#define SERVO_MOTOR (D8)    //伺服电机
+
 /*
  *  @func : 初始化软串口
  */
@@ -35,7 +37,7 @@ void esp8266_serial_init();
  *  @func : esp8266 分发处理来自其他设备的消息
  *  @para1: 存储消息的变量
  */
-void read_serial_data(mcu_msg& data);
+void read_serial_data();
 
 /*
  *  @func : esp8266 发送重启 arduino 给 arduino 设备。

@@ -19,7 +19,7 @@ void setup() {
   for (int i = 0; i < 3; i++)
   {
     pinMode(Pins[i], OUTPUT);
-    digitalWrite(Pins[i], HIGH);
+    digitalWrite(Pins[i], LOW);
   }
 }
 
@@ -27,19 +27,13 @@ void loop() {
   if (1 == flag)
   {
     digitalWrite(Pins[0], HIGH);    //红灯亮
-
-    digitalWrite(Pins[2], LOW);     //绿灯灭
-
     delay(5000);
 
     flag = 0;
   }
   else
   {
-    digitalWrite(Pins[0], LOW);     //红等灭
-
     digitalWrite(Pins[2], HIGH);    //绿灯亮
-
     delay(5000);
 
     flag = 1;
