@@ -75,5 +75,5 @@ void loop() {
   arduino_send_sensor_data(uno_msg);
   
   Serial.println();
-  delay(1000);
+  delay(20000);
 }

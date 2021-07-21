@@ -21,6 +21,18 @@ void arduino_send_sensor_data(const mcu_msg& data)
   const size_t capacity = 1024;
   StaticJsonDocument<capacity> doc;
 
+  /*
+  Serial.println(data.id);
+  Serial.println(data.msg.uno_sensor_msg.temperature);
+  Serial.println(data.msg.uno_sensor_msg.humidity);
+  Serial.println(data.msg.uno_sensor_msg.obstacle_distance);
+  Serial.println(data.msg.uno_sensor_msg.pm25_dust_denisty);
+  Serial.println(data.msg.uno_sensor_msg.mq9_ratio);
+  Serial.println(data.msg.uno_sensor_msg.mq9_alarm);
+  Serial.println(data.msg.uno_sensor_msg.yl69_analog_value);
+  Serial.println(data.msg.uno_sensor_msg.photoresistor);
+  */
+  
   doc["src"] = ARDUINO_DEV;
   doc["dst"] = ANY_DEV;
   doc["id"] = ARDUINO_SENSOR_MSG;
@@ -33,17 +45,6 @@ void arduino_send_sensor_data(const mcu_msg& data)
   doc["yl69_analog_value"] = data.msg.uno_sensor_msg.yl69_analog_value;
   doc["photoresistor"] = data.msg.uno_sensor_msg.photoresistor;
 
-/*
-  Serial.println(data.id);
-  Serial.println(data.msg.uno_sensor_msg.temperature);
-  Serial.println(data.msg.uno_sensor_msg.humidity);
-  Serial.println(data.msg.uno_sensor_msg.obstacle_distance);
-  Serial.println(data.msg.uno_sensor_msg.pm25_dust_denisty);
-  Serial.println(data.msg.uno_sensor_msg.mq9_ratio);
-  Serial.println(data.msg.uno_sensor_msg.mq9_alarm);
-  Serial.println(data.msg.uno_sensor_msg.yl69_analog_value);
-  Serial.println(data.msg.uno_sensor_msg.photoresistor);
-*/
   serializeJson(doc, arduinoSerial);
 }
 

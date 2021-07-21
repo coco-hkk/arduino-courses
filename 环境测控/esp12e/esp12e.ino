@@ -6,15 +6,26 @@
 
 #include "src/esp12e/esp12e.h"
 #include "src/iot/iot.h"
+#include "src/lcd/lcd.h"
+#include "src/led/led.h"
 
 void setup() {
   Serial.begin(115200);
-  delay(1000);
-  
+  esp12e_serial_init();
+
+  led_init(LED_PIN);
+
+  lcd_init();
+
   iot_init();
+  Serial.println("初始化完成");
 }
 
 void loop()
 {
+  read_serial_data();
+  
   iot_task();
+
+  lcd_task();
 }

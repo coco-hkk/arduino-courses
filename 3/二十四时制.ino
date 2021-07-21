@@ -174,5 +174,5 @@ void Display(unsigned char com, unsigned char n)
   if ((2 == com || 3 == com) && (1 == flag))
     digitalWrite(d_h, 0);
   else
-    digitalWrite(d_h, (num[n][7]));
+    digitalWrite(d_h, 1);
 }

@@ -50,6 +50,8 @@
 - ESP8266MOD 板子
 - ESP8266-12E(NodeMCU 1.0) 板子
 - DS1302 [库文件](http://osoyoo.com/2016/07/26/ds1302_clock_module/)
+- ArduinoStreamUtils [库文件](https://github.com/bblanchon/ArduinoStreamUtils)，
+  用于调试。
 
 # Arduino 实训目标
 
@@ -159,10 +161,9 @@
   1. 删除 libraries 目录中的 IRremote 库。
   2. 重新安装 IRremote 模块。
 
-- 上传代码时，esptool 超时问题
-  1. 可能是数据线问题，换一下试试。
-  2. 可能是端口问题，换一下端口。
-  3. 重新安装驱动。
+- 上传代码报错：esptool.FatalError: Failed to connect to ESP8266: Timed out waiting for packet header
+  1. 换一下数据线，换一下端口。
+  2. 拔掉电源，摁住 FLASH 按键，插上电源，开始烧录，直到重启设备松开 FLASH 按键。
 
 - Arduino Uno 上传代码时，报错：not in sync.
   1. 在电路中不要使用端口 0 和 1，它们专门为硬件串口通信设计。
@@ -174,7 +175,10 @@
      没有发送数据，接收端只能接收到空输入了。
 
 - NodeMCU 和 Arduino 软串口通信，报错：InvalidInput
-  1. 一般是串口收发不同步导致。
+  1. 时钟偏差。只能在两侧使用相同的MCU。
+  2. 接线不良/电噪声。
+  3. 接收器读取速度太慢并丢失字节。
+  4. 电压不匹配。
 
 # 实训项目注意事项
 
