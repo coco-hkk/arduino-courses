@@ -50,8 +50,7 @@
 - ESP8266MOD 板子
 - ESP8266-12E(NodeMCU 1.0) 板子
 - DS1302 [库文件](http://osoyoo.com/2016/07/26/ds1302_clock_module/)
-- ArduinoStreamUtils [库文件](https://github.com/bblanchon/ArduinoStreamUtils)，
-  用于调试。
+- ArduinoStreamUtils [库文件](https://github.com/bblanchon/ArduinoStreamUtils)。
 
 # Arduino 实训目标
 
