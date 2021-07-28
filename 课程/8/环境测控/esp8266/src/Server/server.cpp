@@ -53,59 +53,66 @@ String publish_html = "<h2>传感器采集数据发布</h2>\
                   <p>土壤湿度模拟值： " + String(yl69_analog_value) + "</p>\
                   <p>光照强度模拟值： " + String(photoresistor) + "</p>";
 
-String head_html = "\
-    <!DOCTYPE html>\
-    <html>\
-    <head>\
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
+String head_html = R"===(
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    )===";
 
-String title_html = "\
-    <title>ESP8266 信息发布和设备控制</title>";
+String title_html = R"===(
+        <title>ESP8266 信息发布和设备控制</title>
+    )===";
 
-String style_html = "\
-    <style>\
-    * { box-sizing: border-box; }\
-    body { margin: 0; }\
-    .header { background-color: #f1f1f1; padding: 20px; text-align: center; }\
-    .topnav { overflow: hidden; background-color: #333; }\
-    .topnav a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; width: 50%;}\
-    .topnav a:hover { background-color: #ddd; color: black; }\
-    .column { float: left; width: 100%; }\
-    .row:after { content: \"\"; display: table; clear: both; }\
-    @media screen and (max-width: 600px) { .column { width: 100%; } }\
-    .item {color:red; font-weight:bold;}\
-    .item1 {color:blue; font-weight:bold;}\
-    table {width: 50%;}\
-    #servo_value {font-size: 1.5rem; color: red; font-weight: bold;}\
-    </style>";
+String style_html = R"===(
+        <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; }
+        .header { background-color: #f1f1f1; padding: 20px; text-align: center; }
+        .topnav { overflow: hidden; background-color: #333; }
+        .topnav a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; width: 50%;}
+        .topnav a:hover { background-color: #ddd; color: black; }
+        .column { float: left; width: 100%; }
+        .row:after { content: ""; display: table; clear: both; }
+        @media screen and (max-width: 600px) { .column { width: 100%; } }
+        .item {color:red; font-weight:bold;}
+        .item1 {color:blue; font-weight:bold;}
+        table {width: 50%;}
+        #servo_value {font-size: 1.5rem; color: red; font-weight: bold;}
+        </style>
+    )===";
 
-String script_html = "<script>\
-                   function servo_change(flag = 0) {\
-                        var x = document.getElementById(\"servo\").value;\
-                        document.getElementById(\"servo_value\").innerHTML = x;\
-                        if (1 == flag) {\
-                            window.location.href = \"/control?servo_angle=\" + String(x);}\
-                    }\
-                  </script>";
+String script_html = R"===(
+                    <script>
+                      function servo_change(flag = 0) {
+                           var x = document.getElementById("servo").value;
+                           document.getElementById("servo_value").innerHTML = x;
+                           if (1 == flag) {
+                               window.location.href = "/control?servo_angle=" + String(x);}
+                      }
+                    </script>
+                  )===";
 
-String body_html = "\
-    </head>\
-    <body>\
-    <div class=\"header\">\
-      <h1>ESP8266 信息发布和设备控制</h1>\
-    </div>\
-    <div class=\"topnav\">\
-      <a href=\"/\">信息发布</a>\
-      <a href=\"/control\">设备控制</a>\
-    </div>\
-    <div class=\"row\">\
-      <div class=\"column\" id=\"content\">";
+String body_html = R"===(
+            </head>
+            <body>
+            <div class=\"header\">
+              <h1>ESP8266 信息发布和设备控制</h1>
+            </div>
+            <div class="topnav">
+              <a href="/">信息发布</a>
+              <a href="/control">设备控制</a>
+            </div>
+            <div class="row">
+              <div class="column" id="content">
+      )===";
 
-String foot_html = "\
-      </div>\
-    </div>\
-    </body>\
-    </html>";
+String foot_html = R"===(
+          </div>
+        </div>
+        </body>
+        </html>
+    )===";
 
 void get_sensor_data_from_arduino_uno(mcu_msg& data) {
   temperature       = data.msg.uno_sensor_msg.temperature;
