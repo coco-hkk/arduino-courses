@@ -1,10 +1,10 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
-  
-  服务器发布数据实验。
-  
-  1 tab = 2 space
-*/
+   运行该代码，先修改文件名为合法的变量名。
+
+   服务器发布数据实验。
+
+   1 tab = 2 space
+ */
 
 
 //温湿度库对应的头文件
@@ -12,7 +12,7 @@
 
 //网络服务所需头文件
 #include <ESP8266WiFi.h>
-#include <WiFiClient.h> 
+#include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 
 #define D4 2
@@ -38,7 +38,7 @@ float getHumidity(){
 
 //获取温度
 float getTemperature(){
- int chk = DHT11.read(DHT11PIN);
+  int chk = DHT11.read(DHT11PIN);
   return (float)DHT11.temperature;
 }
 
@@ -46,12 +46,22 @@ float getTemperature(){
 void handleRoot() {
   float h = getHumidity();
   float t = getTemperature();
-  String str = "<head><meta charset=\"utf-8\" http-equiv=\"Refresh\" content=\"1\"/><title>ESP-12E试验</title></head><h1>当前湿度(%):";
-  str += String(h);
-  str += "<br>当前温度(℃):";
-  str += String(t);
-  str += "</h1>";
-  server.send(200, "text/html", str);
+  //String str = "<html><head><meta charset=\"utf-8\" http-equiv=\"Refresh\" content=\"1\"/><title>ESP-12E试验</title></head><body><h1>当前湿度(%):";
+  String str = R"===(
+        <html>
+          <head>
+            <meta charset="utf-8" http-equiv="Refresh" content="1"/>
+            <title>ESP-12E试验</title>
+          </head>
+          <body>
+            <h1>当前湿度(%):
+            )===";
+
+        str += String(h);
+        str += "<br>当前温度(℃):";
+        str += String(t);
+        str += "</h1></body></html>";
+        server.send(200, "text/html", str);
 }
 
 void setup() {
@@ -59,7 +69,7 @@ void setup() {
   Serial.begin(115200);
   Serial.println();
   Serial.println("Configuring access point...");
-  
+
   //启动AP热点
   WiFi.softAP(ssid, password);
 
@@ -71,7 +81,7 @@ void setup() {
   //绑定HTTP服务器/目录下所发布的信息，并启动服务
   server.on("/", handleRoot);
   server.begin();
-  
+
   Serial.println("HTTP server started");
 }
 

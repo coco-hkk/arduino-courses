@@ -11,7 +11,7 @@
 #define STEPS 60        //这里设置步进电机旋转一圈是多少步
 
 //定义引脚的连接 
-Stepper stepper(STEPS, 8, 9, 10, 11);   // INT1=8, INT2=10, INT3=9, INT4=11
+Stepper stepper(STEPS, 8, 9, 10, 11);   // IN1=8, IN2=10, IN3=9, IN4=11
 
 //上一次的读取模拟量 
 int previous = 0; 
