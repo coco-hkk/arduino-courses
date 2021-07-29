@@ -24,7 +24,7 @@ void setup() {
 void loop()
 {
   read_serial_data();
-  
+
   iot_task();
 
   lcd_task();

@@ -1,10 +1,10 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
-  
-  dht温湿度传感器 实验
-  
-  1 tab = 2 space
-*/
+   运行该代码，先修改文件名为合法的变量名。
+
+   dht温湿度传感器 实验
+
+   1 tab = 2 space
+ */
 
 #include <dht11.h>
 
@@ -29,7 +29,6 @@ void loop()
   Serial.print(temp);
   Serial.println("C");
 
-
   //湿度
   float humi = (float)DHT11.humidity;
 
@@ -38,5 +37,4 @@ void loop()
   Serial.println("%");
 
   delay(500);
-
 }

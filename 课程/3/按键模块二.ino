@@ -1,21 +1,19 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
-  
-  按键实验，按一下亮，按一下灭。
-  
-  1 tab = 2 space
-*/
+   运行该代码，先修改文件名为合法的变量名。
 
-int LED =13;
-int INPUT_KEY =2;
-int val = 0;
+   按键实验，按一下亮，按一下灭。
 
-void setup() 
+   1 tab = 2 space
+ */
+
+int LED       = 13;
+int INPUT_KEY = 2;
+int val       = 0;
+
+void setup()
 {
-  // put your setup code here, to run once:
   pinMode(LED, OUTPUT);
   pinMode(INPUT_KEY, INPUT);    /*设置INPUT_PULLUP ，INPUT_KEY就不会处于悬空状态*/
-
 }
 
 void ScanKey()
@@ -31,11 +29,9 @@ void ScanKey()
       while (digitalRead(INPUT_KEY) == LOW);
     }
   }
-
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   ScanKey();
   if (val == 1)
   {

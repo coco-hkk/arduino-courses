@@ -1,10 +1,10 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
+   运行该代码，先修改文件名为合法的变量名。
 
-  服务器传感器控制实验。
+   服务器传感器控制实验。
 
-  1 tab = 2 space
-*/
+   1 tab = 2 space
+ */
 
 //网络服务所需头文件
 #include <ESP8266WiFi.h>
@@ -14,7 +14,7 @@
 #define D4 2
 
 //设置AP的SSID和密码
-const char *ssid = "NodeMCU";
+const char *ssid     = "NodeMCU";
 const char *password = "12345678";
 
 //全局对象，用提供web服务
@@ -36,7 +36,7 @@ String strHtml1 = R"===(
       <h1>D4 is )===";
 
 //全局字符串对象，用以完成网页所需的html脚本
- String strHtml2 =R"===(</h1>
+String strHtml2 =R"===(</h1>
    </body>
   </html>
   )===";
@@ -44,7 +44,7 @@ String strHtml1 = R"===(
 //全局变量，表示LED的亮灭
 int valueLED = 0;
 
- //用户跳转到http://192.168.4.1/Digital时页面内容
+//用户跳转到http://192.168.4.1/Digital时页面内容
 void handleDigital()
 {
   String str = server.arg("value");
@@ -55,7 +55,7 @@ void handleDigital()
   server.send(200, "text/html", strHtml);
 }
 
- //用户跳转到http://192.168.4.1时页面内容
+//用户跳转到http://192.168.4.1时页面内容
 void handleRoot() {
   String strHtml = strHtml1 + String(valueLED?"HIGH" : "LOW") + strHtml2;
   server.send(200, "text/html", strHtml);
@@ -82,7 +82,7 @@ void setup() {
   //绑定HTTP服务器/目录下所发布的信息
   server.on("/", handleRoot);
 
- //绑定HTTP服务器/Digital目录下所发布的信息
+  //绑定HTTP服务器/Digital目录下所发布的信息
   server.on("/Digital", HTTP_GET, handleDigital);
 
   //启动服务

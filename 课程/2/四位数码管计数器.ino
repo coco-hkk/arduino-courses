@@ -1,10 +1,10 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
+   运行该代码，先修改文件名为合法的变量名。
 
-  四位数码管计数器实验。
+   四位数码管计数器实验。
 
-  1 tab = 2 space
-*/
+   1 tab = 2 space
+ */
 
 #define  d_a   1
 #define  d_b   2
@@ -15,14 +15,12 @@
 #define  d_g   7
 #define  d_h   8
 
-
 #define   COM1   9
 #define   COM2   10
 #define   COM3   11
 #define   COM4   12
 
-
-//数码管0-F码值
+//共阳极，数码管0-F码值
 unsigned char num[17][8] =
 {
   //a  b  c  d  e  f  g  h
@@ -45,6 +43,7 @@ unsigned char num[17][8] =
   { 1, 1, 1, 1, 1, 1, 1, 0 },     //.
 };
 
+// 共阴极
 unsigned char num1[17][8] =
 {
   //a  b  c  d  e  f  g  h
@@ -95,8 +94,7 @@ void loop()
       {
         for (int i = 0; i < 10; i++)
         {
-          //一秒钟快闪125次，就等于一秒，
-          //1000/8=125
+          //一秒钟快闪125次，就等于一秒，1000/8=125
           for (int q = 0; q<125; q++)
           {
             Display(1, l);//第一位数码管显示l的值
@@ -108,13 +106,11 @@ void loop()
             Display(4, i);
             delay(2);
           }
-
         }
       }
     }
   }
 }
-
 
 //显示函数，com可选数值范围1-4，num可选数值范围0-9
 void Display(unsigned char com, unsigned char n)
@@ -131,31 +127,31 @@ void Display(unsigned char com, unsigned char n)
   //选通位选
   switch (com)
   {
-  case 1:
-    digitalWrite(COM1, HIGH);     //选择位1
-    digitalWrite(COM2, LOW);
-    digitalWrite(COM3, LOW);
-    digitalWrite(COM4, LOW);
-    break;
-  case 2:
-    digitalWrite(COM1, LOW);
-    digitalWrite(COM2, HIGH);     //选择位2
-    digitalWrite(COM3, LOW);
-    digitalWrite(COM4, LOW);
-    break;
-  case 3:
-    digitalWrite(COM1, LOW);
-    digitalWrite(COM2, LOW);
-    digitalWrite(COM3, HIGH);     //选择位3
-    digitalWrite(COM4, LOW);
-    break;
-  case 4:
-    digitalWrite(COM1, LOW);
-    digitalWrite(COM2, LOW);
-    digitalWrite(COM3, LOW);
-    digitalWrite(COM4, HIGH);     //选择位4
-    break;
-  default:break;
+    case 1:
+      digitalWrite(COM1, HIGH);     //选择位1
+      digitalWrite(COM2, LOW);
+      digitalWrite(COM3, LOW);
+      digitalWrite(COM4, LOW);
+      break;
+    case 2:
+      digitalWrite(COM1, LOW);
+      digitalWrite(COM2, HIGH);     //选择位2
+      digitalWrite(COM3, LOW);
+      digitalWrite(COM4, LOW);
+      break;
+    case 3:
+      digitalWrite(COM1, LOW);
+      digitalWrite(COM2, LOW);
+      digitalWrite(COM3, HIGH);     //选择位3
+      digitalWrite(COM4, LOW);
+      break;
+    case 4:
+      digitalWrite(COM1, LOW);
+      digitalWrite(COM2, LOW);
+      digitalWrite(COM3, LOW);
+      digitalWrite(COM4, HIGH);     //选择位4
+      break;
+    default:break;
   }
 
   digitalWrite(d_a, (num[n][0])); //a查询码值表

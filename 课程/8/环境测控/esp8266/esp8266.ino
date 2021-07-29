@@ -6,7 +6,7 @@
 
    1 tab = 2 space
  */
- 
+
 #include "src/esp8266/esp8266.h"
 #include "src/server/server.h"
 #include "src/irremote/irremote.h"

@@ -1,10 +1,10 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
-  
-  通过MQTT客户端完成和IOT的互联实验。
-  
-  1 tab = 2 space
-*/
+   运行该代码，先修改文件名为合法的变量名。
+
+   通过MQTT客户端完成和IOT的互联实验。
+
+   1 tab = 2 space
+ */
 
 #include <ESP8266WiFi.h>
 #include "Adafruit_MQTT.h"
@@ -66,16 +66,16 @@ void setup() {
   Serial.println(WLAN_SSID);
 
   WiFi.begin(WLAN_SSID, WLAN_PASS);
-  
-  while (WiFi.status() != WL_CONNECTED) 
+
+  while (WiFi.status() != WL_CONNECTED)
   {
     delay(1000);
     Serial.print(".");
   }
-  
+
   Serial.println();
   Serial.println("WiFi connected");
-  Serial.print("IP address: "); 
+  Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
   // Setup MQTT subscription for onoff feed.
@@ -84,24 +84,24 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
 }
 
-void loop() 
+void loop()
 {
   // this is our 'wait for incoming subscription packets' busy subloop
   // try to spend your time here
   Adafruit_MQTT_Subscribe *subscription;
-  
+
   // Ensure the connection to the MQTT server is alive (this will make the first
   // connection and automatically reconnect when disconnected).  See the MQTT_connect
   // function definition further below.
   MQTT_connect();
 
-  while ( (subscription = mqtt.readSubscription(5000)) ) 
+  while ( (subscription = mqtt.readSubscription(5000)) )
   {
-    if (subscription == &onoffbutton) 
+    if (subscription == &onoffbutton)
     {
       Serial.print(F("Got: "));
       String value = (char *)onoffbutton.lastread;
-      
+
       Serial.println(value);
       if(!value.compareTo("开"))
       {
@@ -122,11 +122,12 @@ void loop()
   Serial.print(F("Sending photocell val "));
   Serial.print(x);
   Serial.print("...");
-  if (! photocell.publish(x)) 
+
+  if (! photocell.publish(x))
   {
     Serial.println(F("Failed"));
-  } 
-  else 
+  }
+  else
   {
     Serial.println(F("OK!"));
   }
@@ -136,10 +137,10 @@ void loop()
 // Should be called in the loop function and it will take care if connecting.
 void MQTT_connect() {
   int8_t ret;
-  int8_t retries = 10;
+  int8_t retries = 50;
 
   // Stop if already connected.
-  if ( mqtt.connected() ) 
+  if ( mqtt.connected() )
   {
     return;
   }
@@ -147,19 +148,19 @@ void MQTT_connect() {
   Serial.println("Connecting to MQTT... ");
 
   while ( (ret = mqtt.connect()) != 0 )                       // connect will return 0 for connected
-  { 
-       Serial.println( mqtt.connectErrorString(ret) );
-       Serial.println("Retrying MQTT connection in 5 seconds...");
-       
-       mqtt.disconnect();
-       delay(5000);
-       
-       retries--;
-       if (retries == 0) {
-         // basically die and wait for WDT to reset me
-         while (1);
-       }
+  {
+    Serial.println( mqtt.connectErrorString(ret) );
+    Serial.println("Retrying MQTT connection in 5 seconds...");
+
+    mqtt.disconnect();
+    delay(5000);
+
+    retries--;
+    if (retries == 0) {
+      // basically die and wait for WDT to reset me
+      while (1);
+    }
   }
-  
+
   Serial.println("MQTT Connected!");
 }

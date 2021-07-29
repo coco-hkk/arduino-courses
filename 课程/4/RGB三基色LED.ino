@@ -1,10 +1,10 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
-  
-  RGB三基色LED实验。
-  
-  1 tab = 2 space
-*/
+   运行该代码，先修改文件名为合法的变量名。
+
+   RGB三基色LED实验。
+
+   1 tab = 2 space
+ */
 
 int LED_R = 11;
 int LED_G = 10;
@@ -26,49 +26,49 @@ void loop()
   {
     Change_Color(i);
     delay(1000);
-  }//改变七种色彩，调用change_Color 函数
+  }
 }
 
 void Change_Color(unsigned char data_color)
 {
   switch (data_color)
   {
-  case Color_R:    //青色
-    digitalWrite(LED_R, LOW);
-    digitalWrite(LED_G, HIGH);
-    digitalWrite(LED_B, HIGH);
-    break;
-  case Color_G:    //紫色
-    digitalWrite(LED_R, HIGH);
-    digitalWrite(LED_G, LOW);
-    digitalWrite(LED_B, HIGH);
-    break;
-  case Color_B:       //黄色
-    digitalWrite(LED_R, HIGH);
-    digitalWrite(LED_G, HIGH);
-    digitalWrite(LED_B, LOW);
-    break;
-  case Color_RG:       //蓝色
-    digitalWrite(LED_R, LOW);
-    digitalWrite(LED_G, LOW);
-    digitalWrite(LED_B, HIGH);
-    break;
-  case Color_RB:       //绿色
-    digitalWrite(LED_R, LOW);
-    digitalWrite(LED_G, HIGH);
-    digitalWrite(LED_B, LOW);
-    break;
-  case Color_GB:       //红色
-    digitalWrite(LED_R, HIGH);
-    digitalWrite(LED_G, LOW);
-    digitalWrite(LED_B, LOW);
-    break;
-  case Color_RGB:       //白色
-    digitalWrite(LED_R, LOW);
-    digitalWrite(LED_G, LOW);
-    digitalWrite(LED_B, LOW);
-    break;
-  default:
-    break;
+    case Color_R:    //青色
+      digitalWrite(LED_R, LOW);
+      digitalWrite(LED_G, HIGH);
+      digitalWrite(LED_B, HIGH);
+      break;
+    case Color_G:    //紫色
+      digitalWrite(LED_R, HIGH);
+      digitalWrite(LED_G, LOW);
+      digitalWrite(LED_B, HIGH);
+      break;
+    case Color_B:       //黄色
+      digitalWrite(LED_R, HIGH);
+      digitalWrite(LED_G, HIGH);
+      digitalWrite(LED_B, LOW);
+      break;
+    case Color_RG:       //蓝色
+      digitalWrite(LED_R, LOW);
+      digitalWrite(LED_G, LOW);
+      digitalWrite(LED_B, HIGH);
+      break;
+    case Color_RB:       //绿色
+      digitalWrite(LED_R, LOW);
+      digitalWrite(LED_G, HIGH);
+      digitalWrite(LED_B, LOW);
+      break;
+    case Color_GB:       //红色
+      digitalWrite(LED_R, HIGH);
+      digitalWrite(LED_G, LOW);
+      digitalWrite(LED_B, LOW);
+      break;
+    case Color_RGB:       //白色
+      digitalWrite(LED_R, LOW);
+      digitalWrite(LED_G, LOW);
+      digitalWrite(LED_B, LOW);
+      break;
+    default:
+      break;
   }
 }

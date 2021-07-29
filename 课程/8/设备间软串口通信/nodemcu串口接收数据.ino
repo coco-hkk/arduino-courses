@@ -61,7 +61,7 @@ void loop() {
    *  JSON 格式。元素为键值对。格式-> 键:值 => key: value
    *  {"name": "hkk", "time": 2, "value": 1.5}
    */
-   
+
   Serial.println();
   Serial.print("name: ");
   Serial.println(sensordata_json.name);

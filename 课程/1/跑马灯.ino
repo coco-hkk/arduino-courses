@@ -1,15 +1,15 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
-  
-  跑马灯实验
-  
-  1 tab = 4 space
-*/
+   运行该代码，先修改文件名为合法的变量名。
 
-int LED[]={9,10,11};
+   跑马灯实验
+
+   1 tab = 2 space
+ */
+
+int LED[] = {9,10,11};
 
 void setup() {
-  for(int i = 0;i<=3;i++)
+  for(int i = 0;i <= 3;i++)
   {
     pinMode(LED[i],OUTPUT);
   }

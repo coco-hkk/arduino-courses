@@ -1,10 +1,10 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
-  
-  数码管秒表实验。
-  
-  1 tab = 2 space
-*/
+   运行该代码，先修改文件名为合法的变量名。
+
+   数码管秒表实验。
+
+   1 tab = 2 space
+ */
 
 #define D1 2
 #define D2 3
@@ -38,10 +38,8 @@ void deal(unsigned char value)
   }
 }
 
-
 //主循环
 void loop() {
-
   //循环显示 0-9 数字
   for (int i = 0; i<10; i++)
   {

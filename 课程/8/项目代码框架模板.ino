@@ -1,25 +1,25 @@
 /*
-    同学们的代码非常不规范，不方便阅读和调试。这个文件做一些代码规范，以及项目框
-    架的模板。
+   同学们的代码非常不规范，不方便阅读和调试。这个文件做一些代码规范，以及项目框
+   架的模板。
 
-    命名风格
-    1. 变量命名：下划线小写风格。如，humidity_value。
-    2. 函数命名：下划线小写风格。如，get_humidity()。
-    3. 宏命名：下划线大写风格。如，#define LED_PIN (0)
+   命名风格
+   1. 变量命名：下划线小写风格。如，humidity_value。
+   2. 函数命名：下划线小写风格。如，get_humidity()。
+   3. 宏命名：下划线大写风格。如，#define LED_PIN (0)
 
-    布局风格：按照文件从上到下顺序依次组织代码
-    1. 文件描述。如本注释快内容。
-    2. 头文件引用。如，#include <Arduino.h>
-    3. 宏定义。如，#define LED_PIN (0)
-    4. 结构体定义。
-    5. 全局变量定义。如，int humidity_value。
-    6. 函数定义。如，void func_module() {}。
-    7. setup()
-    8. loop()
+   布局风格：按照文件从上到下顺序依次组织代码
+   1. 文件描述。如本注释快内容。
+   2. 头文件引用。如，#include <Arduino.h>
+   3. 宏定义。如，#define LED_PIN (0)
+   4. 结构体定义。
+   5. 全局变量定义。如，int humidity_value。
+   6. 函数定义。如，void func_module() {}。
+   7. setup()
+   8. loop()
 
-    注：本文件仅仅是模板。
+   注：本文件仅仅是模板。
 
-    1 tab = 2 space
+   1 tab = 2 space
  */
 
 /********************************** include **********************************/
@@ -47,13 +47,13 @@
 /******************************* structure definition ************************/
 /*该结构体是两块设备间通过串口通信时的数据模板*/
 typedef struct {
-    int id;             //用于标识消息是由哪个模块传递
-    union {             //传递内容，可以是任何 Arduino 支持的类型，这里是 int。
-        int id0_data;
-        int id1_data;
-        char id2_data;
-        float id3_data;
-    } data;
+  int id;             //用于标识消息是由哪个模块传递
+  union {             //传递内容，可以是任何 Arduino 支持的类型，这里是 int。
+    int id0_data;
+    int id1_data;
+    char id2_data;
+    float id3_data;
+  } data;
 } message;
 
 /******************************* global variable *****************************/
@@ -118,7 +118,7 @@ void dispatch() {
     case 1:
       Serial.println("消息来自 ID 为 1 的模块，这里处理模块 1 相关内容。");
       break;
-    defalut:
+defalut:
       break;
   }
   return;

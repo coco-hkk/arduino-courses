@@ -1,10 +1,10 @@
 /*
-  运行该代码，先修改文件名为合法的变量名。
-  
-  播放音乐实验。
-  
-  1 tab = 2 space
-*/
+   运行该代码，先修改文件名为合法的变量名。
+
+   播放音乐实验。
+
+   1 tab = 2 space
+ */
 
 //列出全部D调的频率
 #define NTD0 -1
@@ -40,7 +40,7 @@
 #define SIXTEENTH 0.0625
 
 //根据简谱列出各频率
-int tune[]=                
+int tune[]=
 {
   NTD3,NTD3,NTD4,NTD5,
   NTD5,NTD4,NTD3,NTD2,
@@ -61,7 +61,7 @@ int tune[]=
 };
 
 //根据简谱列出各节拍
-float durt[]=                   
+float durt[]=
 {
   1,1,1,1,
   1,1,1,1,
@@ -82,8 +82,8 @@ float durt[]=
 };
 
 int length;
-int tonepin = 0;  
-//int ledpin = 2; 
+int tonepin = 0;
+//int ledpin = 2;
 
 void setup()
 {
@@ -91,16 +91,17 @@ void setup()
   //pinMode(ledpin, OUTPUT);
   length = sizeof(tune)/sizeof(tune[0]);   //计算长度
 }
+
 void loop()
 {
   for(int x = 0; x<length; x++)           //循环音符的次数
   {
     tone(tonepin,tune[x]);                //此函数依次播放tune序列里的数组，即每个音符
-    
-    //digitalWrite(ledpin, HIGH); 
+
+    //digitalWrite(ledpin, HIGH);
     delay(300*durt[x]);                   //这里用来根据节拍调节延时，是每个音符持续的时间，即节拍duration，500是调整时间的越大，曲子速度越慢，越小曲子速度越快，自己掌握吧,500这个指数可以自己调整，在该音乐中，我发现用500比较合适。
-    //digitalWrite(ledpin, LOW); 
-    delay(200*durt[x]); 
+    //digitalWrite(ledpin, LOW);
+    delay(200*durt[x]);
     noTone(tonepin);                      //停止当前音符，进入下一音符
   }
   delay(2000);

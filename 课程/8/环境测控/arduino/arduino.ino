@@ -50,7 +50,7 @@ void sensor_data_collection(mcu_msg& uno_msg) {
 void setup() {
   Serial.begin(115200);             //串口初始化
   arduino_serial_init();
-  
+
   YL69_init(YL69_D0_PIN, YL69_A0_PIN);
   ultrasonicwave_init(ULTRASONIC_WAVE_TRIGGER, ULTRASONIC_WAVE_ECHO);
 
@@ -63,7 +63,7 @@ void setup() {
 
 void loop() {
   mcu_msg uno_msg;
-  
+
   read_serial_data();
 
   dht11_task(DHT11_PIN);
@@ -73,7 +73,7 @@ void loop() {
 
   sensor_data_collection(uno_msg);
   arduino_send_sensor_data(uno_msg);
-  
+
   Serial.println();
   delay(20000);
 }
