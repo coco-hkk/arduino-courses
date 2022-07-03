@@ -1,6 +1,6 @@
 # 实训注意事项
 
-1. 分组。三人一组，确认组长，确认小组编号，确认组员分工。
+1. 分组。三人一组，确认组长，确认小组编号，确认组员分工（代码、硬件、调试）。
 2. 领取设备。分组数量取决于设备数量，有的小组可能超过三个成员。
 3. 课件及示例代码地址 `https://github.com/coco-hkk/arduino`。
 
@@ -45,11 +45,11 @@
 # 实验环境
 
 - WIN10 64 位 家庭版
-- Arduino IDE arduino-1.8.15（从[这里](https://www.arduino.cc/en/software) 获取）
+- Arduino IDE arduino-2.0.0 RC8（从[这里](https://www.arduino.cc/en/software) 获取）
 - 电路设计工具 [fritzing](https://fritzing.org/download) 或 Github [fritzing](https://github.com/fritzing/fritzing-app/releases) 选择合适自己的版本。
-- Arduino UNO 板子
-- ESP8266MOD 板子
-- ESP8266-12E(NodeMCU 1.0) 板子
+- Arduino UNO 开发板
+- ESP8266MOD 开发板
+- ESP8266-12E(NodeMCU 1.0) 开发板
 - DS1302 [库文件](http://osoyoo.com/2016/07/26/ds1302_clock_module/)
 - ArduinoStreamUtils [库文件](https://github.com/bblanchon/ArduinoStreamUtils)。
 
@@ -117,6 +117,8 @@
    点都值得去考虑。
 
 **问题汇总**
+
+- ArduinoUNO会将大于3V的输入电压视为高电平识别，小于1.5V的电压视为低电平识别。
 
 - 设备管理器中找不到 Arduino 的端口号
   1. 确保 Arduino 和电脑通过 USB 连接。
