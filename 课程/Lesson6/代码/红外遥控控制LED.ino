@@ -8,37 +8,33 @@
 
 #include <IRremote.h>
 
-int RECV_PIN = 11;
+uint16_t IR_RECEIVE_PIN = 11;
 int LED_PIN  = 13;
-
-IRrecv irrecv(RECV_PIN);
-
-decode_results results;
 
 void setup()
 {
   Serial.begin(115200);
-  irrecv.enableIRIn();                    // Start the receiver
+  IrReceiver.begin(IR_RECEIVE_PIN);
 
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, HIGH);
 }
 
 void loop() {
-  if (irrecv.decode(&results))
+  if (IrReceiver.decode())
   {
-    Serial.println(results.value, HEX);
+    Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
 
-    if (results.value == 0xFF30CF)        //1关灯
+    if (IrReceiver.decodedIRData.decodedRawData == 0xF30CFF00)        //1关灯
     {
       digitalWrite(LED_PIN, LOW);
     }
-    else if (results.value == 0xFF18E7)   //2开灯
+    else if (IrReceiver.decodedIRData.decodedRawData == 0xE718FF00)   //2开灯
     {
       digitalWrite(LED_PIN, HIGH);
     }
 
-    irrecv.resume();                      // Receive the next value
+    IrReceiver.resume();    
   }
   delay(100);
 }

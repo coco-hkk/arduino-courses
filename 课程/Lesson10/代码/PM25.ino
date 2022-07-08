@@ -42,8 +42,8 @@ void loop()
   digitalWrite(ledPower,HIGH);
   delayMicroseconds(sleepTime);
 
-  calcVoltage = voMeasured * 3.0 / 1023.0;
-  dustDensity = 0.172 * calcVoltage - 0.1;       //0.172 是采用精确的仪器侦测出来的数值做线性正交所得公式斜率和截距
+  calcVoltage = voMeasured * 5.0 / 1024.0;
+  dustDensity = 0.172 * calcVoltage - 0.0999;    //0.172 是采用精确的仪器侦测出来的数值做线性正交所得公式斜率和截距
 
   if ( dustDensity < 0)
   {
@@ -59,7 +59,7 @@ void loop()
 
   Serial.print(" - Dust Density: ");
   Serial.print(dustDensity * 1000);             //默认单位是mg/m3
-  Serial.println(" ug/m3");
+  Serial.println(" mg/m3");
 
   delay(1000);
 }

@@ -8,25 +8,19 @@
 
 #include <IRremote.h>
 
-// 删除 libraries 下面已有的 IRremote 库文件，重新安装最新的。
-
-//An IR detector/demodulator is connected to GPIO pin 11
-uint16_t RECV_PIN = 11;
-
-IRrecv irrecv(RECV_PIN);
-
-decode_results results;
+uint16_t IR_RECEIVE_PIN = 11;
 
 void setup() {
   Serial.begin(115200);
-  irrecv.enableIRIn();    //Start the receiver
+  IrReceiver.begin(IR_RECEIVE_PIN);
 }
 
 void loop() {
-  if (irrecv.decode(&results))            //检查是否收到红外遥控信号
+  if (IrReceiver.decode())                      //检查是否收到红外遥控信号
   {
-    Serial.println(results.value, HEX);   //打印信号编码
-    irrecv.resume();                      //Receive the next value
+    //IrReceiver.printIRResultShort(&Serial);   // rawdata 简明输出
+    Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
+    IrReceiver.resume();                        //Receive the next value
   }
   delay(100);
 }

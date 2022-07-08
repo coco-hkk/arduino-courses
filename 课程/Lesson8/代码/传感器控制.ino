@@ -22,11 +22,10 @@ ESP8266WebServer server(80);
 
 //全局字符串对象，用以完成网页所需的html脚本
 String strHtml1 = R"===(
-<!DOCTYPE html>
   <html>
     <head>
      <meta charset="utf-8" />
-      <title></title>
+      <title>外设控制</title>
    </head>
    <body>
       <form id=form1>
@@ -36,7 +35,8 @@ String strHtml1 = R"===(
       <h1>D4 is )===";
 
 //全局字符串对象，用以完成网页所需的html脚本
-String strHtml2 =R"===(</h1>
+String strHtml2 =R"===(
+      </h1>
    </body>
   </html>
   )===";
@@ -44,21 +44,22 @@ String strHtml2 =R"===(</h1>
 //全局变量，表示LED的亮灭
 int valueLED = 0;
 
-//用户跳转到http://192.168.4.1/Digital时页面内容
+//用户跳转到 http://192.168.4.1/Digital 时页面内容
 void handleDigital()
 {
+  // 页面传递参数到这里，使用sever.arg解析参数
   String str = server.arg("value");
   valueLED = str.toInt();
   digitalWrite(D4, valueLED);
 
-  String strHtml = strHtml1 + String(valueLED?"HIGH" : "LOW") + strHtml2;
-  server.send(200, "text/html", strHtml);
+  String htmlContent = strHtml1 + String(valueLED?"HIGH" : "LOW") + strHtml2;
+  server.send(200, "text/html", htmlContent);
 }
 
 //用户跳转到http://192.168.4.1时页面内容
 void handleRoot() {
-  String strHtml = strHtml1 + String(valueLED?"HIGH" : "LOW") + strHtml2;
-  server.send(200, "text/html", strHtml);
+  String htmlContent = strHtml1 + String(valueLED?"HIGH" : "LOW") + strHtml2;
+  server.send(200, "text/html", htmlContent);
 }
 
 void setup() {
@@ -70,27 +71,28 @@ void setup() {
   //启动AP热点
   WiFi.softAP(ssid, password);
 
-  //显示热点信息
+  //显示热点信息，访问网址 http://192.168.4.1
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(myIP);
 
   //设置D4端口模式为输出
   pinMode(D4, OUTPUT);
-  digitalWrite(D4, 0);
+  digitalWrite(D4, LOW);
 
-  //绑定HTTP服务器/目录下所发布的信息
+  //绑定 HTTP 服务器 / 目录下所发布的信息
   server.on("/", handleRoot);
 
-  //绑定HTTP服务器/Digital目录下所发布的信息
+  //绑定 HTTP 服务器 /Digital 目录下所发布的信息
   server.on("/Digital", HTTP_GET, handleDigital);
 
-  //启动服务
+  //启动服务器
   server.begin();
 
   Serial.println("HTTP Server started.");
 }
 
 void loop() {
+  // 监听客户端请求
   server.handleClient();
 }

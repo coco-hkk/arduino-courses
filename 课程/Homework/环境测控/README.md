@@ -17,7 +17,7 @@
 传输给另外两块 MCU；ESP8266MOD 负责搭建一个服务器，显示从 UNO 板子获取的传感器数
 据，同时提供一个用于控制硬件的页面；ESP-12E 作为客户端负责和 Adafruit 服务器交互
 ，将获取的传感器数据发布到 Adafruit，并订阅 Adafruit 创建的用于控制 ESP-12E 外设
-的主题。
+的feed。
 
 ## Arduino Uno
 
