@@ -102,7 +102,7 @@ void loop()
 
   // Now we can publish stuff!
   int value = analogRead(A0);
-  int data = map(value,100,1000,1,100);
+  int data = map(value,0,1023,1,100);
 
   Serial.println();
   Serial.print(F("Sending publish_data value "));
