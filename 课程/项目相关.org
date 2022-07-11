@@ -78,6 +78,7 @@
 3. 使用 ESP-12E 作为客户端，连接 MQTT Server，向 Adafruit 网站发布数据，订阅消息控制外设。
 4. Arduino、ESP8266MOD 和 ESP-12E 间采用软串口通信。如，ArduinoJSON.
 
+#+begin_example
                                                          连接Adafruit +--------+
                                                           +-----------+ MQTT   |
                                                           |   +------>| Server |
@@ -101,6 +102,7 @@
                               |      |     | 环境 |
                               | 外设 |     | 数据 |
                               +------+     +------+
+#+end_example
 
 ** 方案二
 
@@ -110,6 +112,7 @@
 3. Arduino 和 ESP8266MOD 间采用软串口通信，ESP8266MOD 和 ESP-12E 间采用 MQTT
    Server 发布-订阅消息传递数据。
 
+#+begin_example
                                          发布    +--------+    订阅
                                          +------>| MQTT   |---------o
                                          |+------| Server |<-------+|
@@ -125,6 +128,7 @@
       光强  |         |             |        |   数据，订阅  |          |
       ----->|         |             | Server |   即接收数据  |  Client  |
             +---------+             +--------+               +----------+
+#+end_example
 
 ** 方案三
 
@@ -133,6 +137,7 @@
 2. 使用 ESP8266MOD 采集传感器数据，将数据发布到 MQTT Server。
 3. 使用 ESP-12E 订阅 ESP8266MOD 发布到 MQTT Server 的消息，获取传感器数据。控制外设。
 
+#+begin_example
                        发布    +--------+    订阅
                     +--------->| MQTT   |---------o
                     | +--------| Server |<-------+|
@@ -148,3 +153,4 @@
       光强  |           |     数据，订阅    |            |
       ----->|   Server  |     即接收数据    |   Client   |
             +-----------+                   +------------+
+#+end_example
